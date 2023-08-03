@@ -46,15 +46,15 @@ function turnRight(rover: Rover): void {
 }
 
 function moveForward(rover: Rover, plateau: Plateau): void {
-  if (rover.direction === "N" && rover.y < plateau.maxHeight) {
-    rover.y++;
-  } else if (rover.direction === "S" && rover.y > 0) {
-    rover.y--;
-  } else if (rover.direction === "E" && rover.x < plateau.maxWidth) {
-    rover.x++;
-  } else if (rover.direction === "W" && rover.x > 0) {
-    rover.x--;
-  } else {
-    throw new Error("Rover fell off the plateau!");
-  }
+  rover.direction === "N" && rover.y < plateau.maxHeight
+    ? rover.y++
+    : rover.direction === "S" && rover.y > 0
+      ? rover.y--
+      : rover.direction === "E" && rover.x < plateau.maxWidth
+        ? rover.x++
+        : rover.direction === "W" && rover.x > 0
+          ? rover.x--
+          : (() => {
+            throw new Error("Rover fell off the plateau!");
+          })();
 }
